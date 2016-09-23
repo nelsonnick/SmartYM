@@ -11,9 +11,18 @@ public class MainController extends Controller {
 	 * 主界面
 	 * */
     public void index() throws WeixinException {
-        WeixinProxy wp =new WeixinProxy();
-        wp.getTokenManager();
-        renderText(wp.getUserIdByCode(getPara("code"))[0].toString());
+        String userId;
+        if (getCookieObject("UserId") == null){
+            WeixinProxy wp =new WeixinProxy();
+            wp.getTokenManager();
+            userId = wp.getUserIdByCode(getPara("code"))[0].toString();
+            setCookie("UserId", userId, 9*60);
+            System.out.println("无Cookie");
+        }else{
+            userId=getCookieObject("UserId").getValue();
+            System.out.println("有Cookie");
+        }
+        renderText(userId);
     }
 
 }
