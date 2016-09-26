@@ -236,7 +236,6 @@ export default class DataTable extends React.Component {
     }];
 
     return (
-      <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }}>
         <Table
           scroll={{ y: 480 }}
           useFixedHeader="true"
@@ -246,7 +245,6 @@ export default class DataTable extends React.Component {
           loading={loading}
           pagination={false}
         />
-      </div>
     );
   }
 }
